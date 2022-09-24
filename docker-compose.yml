@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  code2seq_comments:
+    build:
+      context: "./code2seq"
+      dockerfile: Dockerfile
+    image: ciselab/code2seq:latest
+    volumes:
+      # source on local machine: place in container
+      - ./code2seq/models:/app/code2seq/models
+      - ./code2seq/datasets/funcom/raw:/app/code2seq/datasets/funcom/raw:ro
+      - ./code2seq/datasets/funcom/preprocessed:/app/code2seq/datasets/funcom/preprocessed:rw
+      
+    environment:
+      dataset: "funcom"
+    # Preprocessing variables
+      preprocess: true
+      comments: true
+      stopwords: true
+    # Training variables
+      train: true
+      trainFromScratch: true
+      continueTrainingFromCheckpoint: false
+    # Evaluation variables
+    # add more flags here
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
