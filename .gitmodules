@@ -1,0 +1,3 @@
+[submodule "code2seq"]
+	path = code2seq
+	url = ../code2seq
