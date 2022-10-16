@@ -1,4 +1,4 @@
-# Comment Experiment: Code Captioning with funcom
+# Comment Experiment: Code Captioning with Funcom
 
 This is the repository to run the experiment of code2seq on funcom dataset for the task of Code Captioning.
 
