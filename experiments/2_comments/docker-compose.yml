@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  code2seq_comments:
+    build:
+      context: "../../code2seq"
+      dockerfile: Dockerfile
+    image: ciselab/code2seq:latest
+    volumes:
+      # source on local machine: place in container
+      - ./config.py:/app/code2seq/config.py
+      - ../../code2seq/models:/app/code2seq/models
+      - ../../code2seq/datasets/funcom/raw:/app/code2seq/datasets/funcom/raw:ro
+      - ../../code2seq/datasets/funcom/preprocessed:/app/code2seq/datasets/funcom/preprocessed:rw
+      
+    environment:
+      dataset: "funcom"
+      variant: "comments"
+    # Preprocessing variables
+      preprocess: true
+      includeComments: true
+      excludeStopwords: false
+      useTfidf: false
+      numberOfTfidfKeywords: "50"
+    # Training variables
+      train: true
+      # There has to be an existing model for the following to work
+      continueTrainingFromCheckpoint: false
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
