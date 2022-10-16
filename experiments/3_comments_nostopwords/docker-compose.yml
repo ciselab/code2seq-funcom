@@ -10,11 +10,11 @@ services:
       # source on local machine: place in container
       - ./config.py:/app/code2seq/config.py
       - ../../code2seq/models:/app/code2seq/models
-      - ../../code2seq/datasets/codesearchnet/raw:/app/code2seq/datasets/codesearchnet/raw:ro
-      - ../../code2seq/datasets/codesearchnet/preprocessed:/app/code2seq/datasets/codesearchnet/preprocessed:rw
+      - ../../code2seq/datasets/funcom/raw:/app/code2seq/datasets/funcom/raw:ro
+      - ../../code2seq/datasets/funcom/preprocessed:/app/code2seq/datasets/funcom/preprocessed:rw
       
     environment:
-      dataset: "codesearchnet"
+      dataset: "funcom"
       variant: "comments_nostopwords"
     # Preprocessing variables
       preprocess: true
