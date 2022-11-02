@@ -17,15 +17,15 @@ services:
       dataset: "funcom"
       variant: "comments_nostopwords"
     # Preprocessing variables
-      preprocess: true
-      includeComments: true
-      excludeStopwords: true
-      useTfidf: false
+      preprocess: "true"
+      includeComments: "true"
+      excludeStopwords: "true"
+      useTfidf: "false"
       numberOfTfidfKeywords: "50"
     # Training variables
-      train: true
+      train: "true"
       # There has to be an existing model for the following to work
-      continueTrainingFromCheckpoint: false
+      continueTrainingFromCheckpoint: "false"
 
     deploy:
       resources:
