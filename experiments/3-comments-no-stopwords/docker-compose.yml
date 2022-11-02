@@ -2,10 +2,7 @@ version: '3.8'
 
 services:
   code2seq_comments:
-    build:
-      context: "../../code2seq"
-      dockerfile: Dockerfile
-    image: ciselab/code2seq:latest
+    image: ciselab/code2seq:1.0.0
     volumes:
       # source on local machine: place in container
       - ./config.py:/app/code2seq/config.py
@@ -15,11 +12,11 @@ services:
       
     environment:
       dataset: "funcom"
-      variant: "nocomments"
+      variant: "comments_nostopwords"
     # Preprocessing variables
       preprocess: "true"
-      includeComments: "false"
-      excludeStopwords: "false"
+      includeComments: "true"
+      excludeStopwords: "true"
       useTfidf: "false"
       numberOfTfidfKeywords: "50"
     # Training variables
